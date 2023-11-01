@@ -1,5 +1,5 @@
 object ArithmeticExpression {
-  git
+
   enum ArithmeticExpression:
     case Num(x: Int)
     case Minus(x: ArithmeticExpression)
