@@ -19,6 +19,21 @@ class test extends AnyFunSuite {
     assert(ArithmeticExpression.pretty(ArithmeticExpression.Div(ArithmeticExpression.Mult(ArithmeticExpression.Num(2), ArithmeticExpression.Num(4)),
       ArithmeticExpression.Plus(
         ArithmeticExpression.Num(5), ArithmeticExpression.Minus(ArithmeticExpression.Num(6))
-      ))) === "((2 * 4) / (5 + -6.0)) = -8.0")
+      ))) === "((2 * 4) / (5 + -6.0))")
+  }
+
+  test("evaluate: Pow(Plus(Num(1), Num(2)), Div(Mult(Num(2), Num(2)), Num(2))) == 9.0"){
+    assert(ArithmeticExpression.evaluate(
+      ArithmeticExpression.Pow(
+        ArithmeticExpression.Plus(ArithmeticExpression.Num(1), ArithmeticExpression.Num(2)),
+        ArithmeticExpression.Div(ArithmeticExpression.Mult(
+          ArithmeticExpression.Num(2), ArithmeticExpression.Num(2)), ArithmeticExpression.Num(2)))) === 9.0)
+  }
+  test("pretty: Pow(...) == (((1 + 2)) ^ (((2 * 2) / 2)))") {
+    assert(ArithmeticExpression.pretty(
+      ArithmeticExpression.Pow(
+        ArithmeticExpression.Plus(ArithmeticExpression.Num(1), ArithmeticExpression.Num(2)),
+        ArithmeticExpression.Div(ArithmeticExpression.Mult(
+          ArithmeticExpression.Num(2), ArithmeticExpression.Num(2)), ArithmeticExpression.Num(2)))) === "(((1 + 2)) ^ (((2 * 2) / 2)))")
   }
 }
