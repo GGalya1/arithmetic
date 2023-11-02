@@ -49,6 +49,6 @@ class test extends AnyFunSuite {
         ArithmeticExpression.Num(2),
         ArithmeticExpression.Plus(ArithmeticExpression.Num(2), ArithmeticExpression.Num(2)),
         ArithmeticExpression.Mult(ArithmeticExpression.Num(2), ArithmeticExpression.Num(3))))
-      === "2 = 2.0\n(2 + 2) = 4.0\n(2 * 3) = 6.0")
+      === "2 = 2.0\r\n(2 + 2) = 4.0\r\n(2 * 3) = 6.0\r\n")
   }
 }
