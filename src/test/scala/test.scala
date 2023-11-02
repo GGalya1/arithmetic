@@ -36,4 +36,19 @@ class test extends AnyFunSuite {
         ArithmeticExpression.Div(ArithmeticExpression.Mult(
           ArithmeticExpression.Num(2), ArithmeticExpression.Num(2)), ArithmeticExpression.Num(2)))) === "(((1 + 2)) ^ (((2 * 2) / 2)))")
   }
+
+  test("List of evaluates: List(Num(2), Plus(Num(2), Num(2)), Mult(Num(2), Num(3))) == List(2.0, 4.0, 6.0)"){
+    assert(ArithmeticExpression.evaluate(List(
+      ArithmeticExpression.Num(2),
+      ArithmeticExpression.Plus(ArithmeticExpression.Num(2), ArithmeticExpression.Num(2)),
+      ArithmeticExpression.Mult(ArithmeticExpression.Num(2), ArithmeticExpression.Num(3)))) === List(2.0, 4.0, 6.0))
+  }
+  test("IShowResult: List(Num(2), Plus(Num(2), Num(2)), Mult(Num(2), Num(3))) == (\n2 = 2.0\n(2 + 2) = 4.0\n(2 * 3) = 6.0)"){
+    assert(ArithmeticExpression.showResults(
+      List(
+        ArithmeticExpression.Num(2),
+        ArithmeticExpression.Plus(ArithmeticExpression.Num(2), ArithmeticExpression.Num(2)),
+        ArithmeticExpression.Mult(ArithmeticExpression.Num(2), ArithmeticExpression.Num(3))))
+      === "2 = 2.0\n(2 + 2) = 4.0\n(2 * 3) = 6.0")
+  }
 }

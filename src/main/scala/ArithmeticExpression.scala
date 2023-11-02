@@ -71,9 +71,25 @@ object ArithmeticExpression:
       case Pow(x, y) =>
         s"((${pretty(x)}) ^ (${pretty(y)}))"
 
+  def evaluate(expressions: List[ArithmeticExpression]): List[Double] =
+    expressions.map(x => evaluate(x))
+
+  def showResults(expressions: List[ArithmeticExpression]): String =
+    var res = s""
+    val newline = sys.props("line.separator")
+    for(elem <- expressions){
+      res = res.concat(pretty(elem))
+      res = res.concat(s" = ${evaluate(elem)}")
+      res += newline
+    }
+    res
+    //man kann aber fold benutzen und es wird so aussehen: foldLeft[Double](0)((acc, x) => acc + x)
+
 
   @main def hello(): Unit ={
     //println("Hello World!")
-    println(evaluate(Pow(Plus(Num(1), Num(2)), Div(Mult(Num(2), Num(2)), Num(2)))))
-    println(pretty(Pow(Plus(Num(1), Num(2)), Div(Mult(Num(2), Num(2)), Num(2)))))
+    println(evaluate(List(Num(2), Plus(Num(2), Num(2)), Mult(Num(2), Num(3)))))
+    println(showResults(List(Num(2), Plus(Num(2), Num(2)), Mult(Num(2), Num(3)))))
+    //println(evaluate(Pow(Plus(Num(1), Num(2)), Div(Mult(Num(2), Num(2)), Num(2)))))
+    //println(pretty(Pow(Plus(Num(1), Num(2)), Div(Mult(Num(2), Num(2)), Num(2)))))
   }
